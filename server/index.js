@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 const ClientsRoutes = require("./routes/ClientRoute");
 app.use(ClientsRoutes);
 
-const Locations = require("./routes/Locations");
+const Locations = require("./routes/LocationsRoute");
 app.use(Locations);
 
 

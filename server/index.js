@@ -10,7 +10,7 @@ const Locations = require("./routes/LocationsRoute");
 app.use(Locations);
 
 
-app.listen(3001, (err) => {
+ app.listen(3001, (err) => {
   if (err) {
     return console.log("Error", err);
   } 

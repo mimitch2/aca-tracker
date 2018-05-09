@@ -15,30 +15,59 @@
 
 
 document.getElementById("button").addEventListener("click", handleInput)
-let userId = null;
-    function handleInput(){
-        const value = document.getElementById("input").value
+document.addEventListener("keypress", enter)
 
-        fetch('http://localhost:3001/clients', {
+function enter(e) {
+  if(13 == e.keyCode){
+    handleInput();
+    
+  }
+}
+
+let userId = null;
+let lat = null;
+let long = null;
+
+function handleInput(){
+ const value = document.getElementById("input").value
+
+  fetch('http://localhost:3001/clients', {
   method: 'POST',
   headers: {
     "Content-Type": "application/json"
   },
   body: JSON.stringify({'name': value})
-}).then(res => res.json())
-  .then(res => {
-    userId = res.clientId;
-    console.log(userId);
-  });  
- 
-  
-    }
+   }).then(res => res.json())
+     .then(res => {
+       userId = res.clientId;
+       console.log(userId);
+
+       function timer(){
+         function success(pos){
+           
+           lat = pos.coords.latitude
+           long = pos.coords.longitude
+
+           console.log(lat, long);
+
+           fetch('http://localhost:3001/locations', {
+           method: 'POST',
+           headers: {
+           "Content-Type": "application/json"
+           },
+            body: JSON.stringify({"id": userId, "lat": lat, "long": long})
+             }).then(res => res.json())
+               .then(res=> console.log(res)) 
+           
+         }
+        navigator.geolocation.getCurrentPosition(success);
+         setTimeout(timer, 2000);
+       };
+
+       timer();
+     });  
+     
+}
    
-
-    
-
-
-
-
 </script>
 </html>

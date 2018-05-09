@@ -37,6 +37,8 @@ Let's create an app that will let us see where people are.
       * every 2 seconds 
       * use the [geo location api of the browser](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) to get longitute and latitude coordinates
       * do a fetch POST to /locations, send a body as `{"id":clientId, lat:"30.23",long:"-97.7"}`
+
+
 * public/admin.html
   * start a timer
   * every 1 second 

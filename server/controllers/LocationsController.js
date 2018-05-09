@@ -1,9 +1,8 @@
  const clients = require('../clients');
  const fetch = require('node-fetch');
- const data ={};
 
 module.exports.list = function list(request, response) {
-  return response.json([]);
+  return response.json(["hello"]);
 };
 module.exports.show = function show(request, response) {
   const id = Number(request.params.id);
